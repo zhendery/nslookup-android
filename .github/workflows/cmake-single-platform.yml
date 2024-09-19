@@ -33,7 +33,7 @@ jobs:
     # 压缩
     - name: pacakge dist
       run: |
-        tar -czvf build.tar.gz -C dist ${{github.workspace}}/build
+        tar -czvf build.tar.gz -C ${{github.workspace}}/build .
 
     - name: create github release
       id: new_release
