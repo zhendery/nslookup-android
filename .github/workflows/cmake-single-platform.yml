@@ -29,7 +29,10 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: mkdir ${{github.workspace}}/build
+           cd ${{github.workspace}}/build
+           LDFLAGS=-static CFLAGS="-fPIC -O3 -fomit-frame-pointer -ffast-math -march=armv7-a" CC=$(pwd)/../../android-toolchain/bin/arm-linux-androideabi-gcc cmake ..
+           make
 
     - name: Test
       working-directory: ${{github.workspace}}/build
